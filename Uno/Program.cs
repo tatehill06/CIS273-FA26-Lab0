@@ -6,7 +6,7 @@ public class Program
     {
         Card card = new Card();
         card.Type = CardType.Number;
-        card.Color = Color.Blue;
+        card.Color = Color.Red;
         card.Number = 3;
 
         Console.WriteLine(card.ToString() );

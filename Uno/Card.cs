@@ -17,36 +17,28 @@ public class Card
     public Color Color { get; set; }
     public int? Number { get; set; }
 
-
     public static bool PlaysOn(Card card1, Card card2, Color? currentColor = null)
     {
-
-        switch (card1.Type)
+        if (card1.Type == CardType.Wild || card1.Type == CardType.WildDraw4)
         {
-
-            case CardType.Number:
-                if (card2.Type == CardType.Number)
-                {
-                    return card1.Number == card2.Number || card1.Color == card2.Color;
-                }
-                else if (card2.Type == CardType.Wild || card2.Type == CardType.WildDraw4)
-                {
-                    // TODO, check current color
-                }
-                else
-                {
-                    // SKIP, REVERSE, DRAW2
-                    //TODO, check color
-                }
-
-                break;
-
-
-                default:
-                    return false;
-
-
-
+            return true;
+        }
+        else if (card2.Type == CardType.Wild || card2.Type == CardType.WildDraw4)
+        {
+            return currentColor == null || card1.Color == currentColor;
+        }
+    
+        else if (card1.Type == CardType.Number && card2.Type == CardType.Number && card1.Number == card2.Number)
+        {
+            return true;
+        }
+        else if (card1.Color == card2.Color)
+        {
+            return true;
+        }
+        else if (card1.Type == card2.Type && card1.Type != CardType.Number)
+        {
+            return true;
 
         }
 
@@ -55,8 +47,17 @@ public class Card
     public override string ToString()
     {
         //TODO handle other card types
-
-        return $"{Color} {Number}";
+        if (Type == CardType.Number)
+        {
+            return $"{Color} {Number}";
+        }
+        if (Type == CardType.Wild || Type == CardType.WildDraw4)
+        {
+            return $"{Type}";
+        }
+        else
+        {
+            return $"{Color} {Type}";
+        }   
     }
-
 }
