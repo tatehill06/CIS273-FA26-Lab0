@@ -1,2 +1,21 @@
 namespace Prayer;
 
+public class Author
+{
+    public string FirstName { get; set; } = "";
+
+    public string LastName { get; set; } = "";
+
+    public string? Email {get;set;}
+
+    public override string ToString()
+    {
+        return $"{FirstName} {LastName}";
+    }
+
+    public static implicit operator Author(string v)
+    {
+        throw new NotImplementedException();
+    }
+}
+
