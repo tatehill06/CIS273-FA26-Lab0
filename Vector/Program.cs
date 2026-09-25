@@ -12,6 +12,8 @@ public class Program
         //instance method
         Vector result = v1.Add(v2);
 
+        Vector resilt = v1.Subtract(v2);
+
         // class method (static keyword)
         Vector result2 = Vector.Add(v1, v2);
 
